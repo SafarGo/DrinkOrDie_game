@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float contactDamage = 5f;
     [SerializeField] private int resourceDrop = 1;
+    [SerializeField] private GameObject damageNumberPrefab;
 
     private float currentHealth;
     private Transform target;
@@ -35,6 +36,8 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float amount)
     {
         currentHealth -= amount;
+        GameObject text = Instantiate(damageNumberPrefab, transform.position, transform.rotation);
+        text.GetComponentInChildren<DamageNumber>().SetDamage(amount);
         if (currentHealth <= 0f) Die();
     }
 

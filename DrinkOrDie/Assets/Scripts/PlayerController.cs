@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     public int Hp;
     public float ShootSpeed;
     public Transform FirePoint;
+    public float Damage;
 
     [SerializeField] private float speed;
     [SerializeField] private GameObject projectilePrefab;
@@ -71,6 +72,14 @@ public class PlayerController : MonoBehaviour
         {
             yield return new WaitForSeconds(ShootSpeed);
             Shoot();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().TakeDamage(Damage);
         }
     }
 }

@@ -13,7 +13,7 @@ public class ExplosiveBullet : Projectile
         {
             if (hit.CompareTag("Enemy"))
             {
-                return;
+                hit.GetComponent<Enemy>().TakeDamage(damage);
             }
         }
 
