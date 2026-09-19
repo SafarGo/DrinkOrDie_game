@@ -229,12 +229,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c88237e9ddcc7742b88c649d1c414e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExpDrop: 10
   enemyName: Enemy
   maxHealth: 10
   moveSpeed: 6
   contactDamage: 5
   resourceDrop: 1
-  damageNumberPrefab: {fileID: 0}
+  damageNumberPrefab: {fileID: 6616381715874326724, guid: b29578a9f0eca474f85f19b10fb8c84d, type: 3}
+  attackDelay: 1
+  attackDamage: 1
 --- !u!61 &517609565958823658
 BoxCollider2D:
   m_ObjectHideFlags: 0

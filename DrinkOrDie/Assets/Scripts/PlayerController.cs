@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 public class PlayerController : MonoBehaviour 
 {
-    public int Hp;
+    public float Hp;
     public float ShootSpeed;
     public Transform FirePoint;
     public float Damage;

@@ -1,14 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
+    public int ExpDrop;
+
     [SerializeField] private string enemyName = "Enemy";
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float contactDamage = 5f;
     [SerializeField] private int resourceDrop = 1;
     [SerializeField] private GameObject damageNumberPrefab;
+    [SerializeField] private float attackDelay;
+    [SerializeField] private float attackDamage;
 
     private float currentHealth;
     private Transform target;
@@ -43,23 +48,38 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Die()
     {
+        GameManager.Instance.AddExp(ExpDrop);
         Destroy(gameObject);
     }
 
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Enemy attack");
-        }
+       
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Enemy attack");
+            StartCoroutine(GetDamage(collision.gameObject));
+        }
+    }
+
+    protected virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            StopCoroutine(GetDamage(collision.gameObject));
+        }
+    }
+
+    IEnumerator GetDamage(GameObject player)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(attackDelay);
+            player.GetComponent<PlayerController>().Hp -= attackDamage;
         }
     }
 }
