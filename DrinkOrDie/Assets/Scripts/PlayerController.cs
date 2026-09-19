@@ -82,4 +82,31 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(Damage);
         }
     }
+
+    public void AddShootSpeed(float value)
+    {
+        ShootSpeed *= 1f - value;
+
+        ShootSpeed = Mathf.Max(0.05f, ShootSpeed);
+    }
+
+    public void AddHealth(float value)
+    {
+        Hp += Mathf.RoundToInt(value);
+    }
+
+    public void AddMoveSpeed(float value)
+    {
+        speed += value;
+    }
+
+    public void AddMeleeDamage(float value)
+    {
+        Damage += value;
+    }
+
+    public void SetProjectileType(int type)
+    {
+        Debug.Log("Выбран тип снаряда: " + type);
+    }
 }

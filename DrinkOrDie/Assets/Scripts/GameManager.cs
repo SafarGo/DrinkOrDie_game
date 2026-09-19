@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text ExpText;
     public TMP_Text WaveText;
     public TMP_Text HPText;
+    public GameObject UpgradePanel;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
         {
             WaveCount++;
             PlayerExpCount = 0;
+            Time.timeScale = 0f;
+            UpgradePanel.GetComponent<UpgradePanel>().Show();
         }
     }
 }
