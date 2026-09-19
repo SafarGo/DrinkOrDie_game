@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -7.02, y: -1.6199999}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 979, y: 612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &804164368129230889
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 5793161940043096711}
   - component: {fileID: 517609565958823658}
   m_Layer: 0
-  m_Name: Enemy_base
+  m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,8 +131,8 @@ Transform:
   m_GameObject: {fileID: 3603753270785738958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.02, y: 2.61, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.4728794, y: 2.4728794, z: 2.4728794}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 87106261400313580}
@@ -180,7 +180,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9811321, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.735849, g: 0.06594872, b: 0.06594872, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -229,11 +229,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c88237e9ddcc7742b88c649d1c414e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExpDrop: 1
-  MoveSpeed: 4
+  ExpDrop: 3
+  MoveSpeed: 2
   enemyName: Enemy
-  maxHealth: 10
+  maxHealth: 15
   contactDamage: 5
+  resourceDrop: 1
   damageNumberPrefab: {fileID: 6616381715874326724, guid: b29578a9f0eca474f85f19b10fb8c84d, type: 3}
   attackDelay: 1
   attackDamage: 1

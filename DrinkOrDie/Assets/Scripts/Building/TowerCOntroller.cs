@@ -21,11 +21,14 @@ public class TowerCOntroller : Building
     {
         while (true)
         {
-            Debug.Log("Firing at enemy");
-            yield return new WaitForSeconds(fireRate);
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-            Vector2 direction = (enemyTransform.position - transform.position).normalized;
-            bullet.GetComponent<Projectile>().Setup(direction, damage, 10f, 3f);
+            if (enemyTransform != null)
+            {
+                Debug.Log("Firing at enemy");
+                yield return new WaitForSeconds(fireRate);
+                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                Vector2 direction = (enemyTransform.position - transform.position).normalized;
+                bullet.GetComponent<Projectile>().Setup(direction, damage, 10f, 3f);
+            }
         }
     }
 }

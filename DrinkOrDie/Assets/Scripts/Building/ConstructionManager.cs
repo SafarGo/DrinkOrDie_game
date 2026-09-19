@@ -54,27 +54,19 @@ public class ConstructionManager : MonoBehaviour
     {
         if (selectedBuilding == null) return;
         if (GameManager.Instance.PlayerExpCount < selectedBuilding.cost) return;
-
         if (preview != null) Destroy(preview);
-
         preview = Instantiate(selectedBuilding.prefab, GetMouseWorldPosition(), Quaternion.identity);
-
-        // Прозрачность
         foreach (var sr in preview.GetComponentsInChildren<SpriteRenderer>())
         {
             Color c = sr.color;
             c.a = 0.5f;
             sr.color = c;
         }
-
-        // Отключаем всю логику, кроме Building — чтобы башня не стреляла
         foreach (var mb in preview.GetComponentsInChildren<MonoBehaviour>())
         {
             if (mb is Building) continue;
             mb.enabled = false;
         }
-
-        // Отключаем коллайдеры — чтобы превью не мешало мыши и не ловило врагов
         foreach (var col in preview.GetComponentsInChildren<Collider2D>())
         {
             col.enabled = false;

@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string enemyName = "Enemy";
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private float contactDamage = 5f;
-    [SerializeField] private int resourceDrop = 1;
     [SerializeField] private GameObject damageNumberPrefab;
     [SerializeField] private float attackDelay;
     [SerializeField] private float attackDamage;

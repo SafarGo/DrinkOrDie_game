@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float projectileLifetime = 3f;
     [SerializeField] private float startAngle = 0f;
+    [SerializeField] private GameObject[] projectileTypes;
 
     private Rigidbody2D rb; 
     private Vector2 movement;
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddHealth(float value)
     {
-        Hp += Mathf.RoundToInt(value);
+        Hp *= 1 + (Mathf.RoundToInt(value))/100;
     }
 
     public void AddMoveSpeed(float value)
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetProjectileType(int type)
     {
+        projectilePrefab = projectileTypes[type];
         Debug.Log("Выбран тип снаряда: " + type);
     }
 }

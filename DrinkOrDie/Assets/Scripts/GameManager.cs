@@ -48,11 +48,12 @@ public class GameManager : MonoBehaviour
                 spawner.spawnInterval *= 0.9f;
             }
             ShowBuildingPanel();
+            ExpToNewxWave *= 5;
         }
-        //if(PlayerExpCount%12 == 0)
-        //{
-         //   ShowUpgradePanel();
-        //}
+        if(PlayerExpCount%20 == 0)
+        {
+            ShowUpgradePanel();
+        }
     }
 
     void ShowUpgradePanel()
