@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int numberOftilesForShoot = 8;
-    [SerializeField] private float projectileDamage = 5f;
+    [SerializeField] private float projectileDamage;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float projectileLifetime = 3f;
     [SerializeField] private float startAngle = 0f;
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddHealth(float value)
     {
-        Hp *= 1 + (Mathf.RoundToInt(value))/100;
+        Hp *= 1 + value/100;
     }
 
     public void AddMoveSpeed(float value)

@@ -3,12 +3,19 @@ using UnityEngine.EventSystems;
 
 public class ConstructionManager : MonoBehaviour
 {
+    public static ConstructionManager Instance { get; private set; }
+
     [SerializeField] private BuildingData[] buildings;
 
     private BuildingData selectedBuilding;
     private GameObject preview;
 
-    private bool isBuildingPhase;
+    public bool isBuildingPhase;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -46,7 +53,7 @@ public class ConstructionManager : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            CancelBuilding();
+            EndBuildPhase();
         }
     }
 

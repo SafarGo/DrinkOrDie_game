@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
             ShowBuildingPanel();
             ExpToNewxWave *= 5;
         }
-        if(PlayerExpCount%20 == 0)
+        bool buildingFase = GameObject.Find("ConstructionManager").GetComponent<ConstructionManager>().isBuildingPhase;
+        if (PlayerExpCount%20 == 0 && !buildingFase)
         {
             ShowUpgradePanel();
         }
