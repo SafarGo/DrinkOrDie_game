@@ -753,6 +753,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 560246083302766931, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.x
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 560246083302766931, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 667294107041786720, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.x
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 667294107041786720, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928362416618010715, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.x
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928362416618010715, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.y
+      value: 15.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3201104417233056736, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
       propertyPath: m_Name
       value: Chunk_Prefab
@@ -796,6 +820,14 @@ PrefabInstance:
     - target: {fileID: 3547263697831797765, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400463859726683321, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.x
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400463859726683321, guid: d2f65b57767e8c14694c131dc07e73da, type: 3}
+      propertyPath: m_Size.y
+      value: 15.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

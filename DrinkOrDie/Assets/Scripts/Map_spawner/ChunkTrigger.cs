@@ -1,9 +1,10 @@
+
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class ChunkTrigger : MonoBehaviour
 {
-    [Header("Точка привязки (мир)")]
+    [Header("Координаты текущего чанка")]
     [SerializeField] private Vector2 anchorPoint;
 
     [Header("Префаб чанка")]
@@ -12,14 +13,15 @@ public class ChunkTrigger : MonoBehaviour
     [Header("Размер чанка")]
     [SerializeField] private float chunkSize = 16f;
 
-    [Header("Куда строить относительно anchorPoint")]
+    [Header("Смещения соседей")]
     [SerializeField] private Vector2Int[] neighborOffsets;
 
-    private bool isUsed = false;
-    public void Setup(Vector2 anchor)
+    private bool isUsed;
+
+    public void Setup(Vector2 triggerPosition, Vector2 chunkTopLeft)
     {
-        anchorPoint = anchor;
-        transform.position = anchor;
+        transform.position = triggerPosition;
+        anchorPoint = chunkTopLeft;
 
         var col = GetComponent<BoxCollider2D>();
         col.isTrigger = true;
@@ -33,6 +35,7 @@ public class ChunkTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         isUsed = true;
+
         SpawnNeighbors();
     }
 
@@ -40,41 +43,50 @@ public class ChunkTrigger : MonoBehaviour
     {
         int baseX = Mathf.RoundToInt(anchorPoint.x / chunkSize);
         int baseY = Mathf.RoundToInt(anchorPoint.y / chunkSize);
-        Debug.Log($"[{name}] anchor={anchorPoint} chunkSize={chunkSize} base=({baseX},{baseY})");
 
         foreach (var off in neighborOffsets)
         {
-            Vector2 newTL = ComputeTopLeft(baseX + off.x, baseY + off.y);
-            Debug.Log($"[{name}] off={off} -> newTL={newTL}");
+            int gx = baseX + off.x;
+            int gy = baseY + off.y;
+
+            Vector2 newTL = new Vector2(
+                gx * chunkSize,
+                gy * chunkSize
+            );
 
             if (ChunkExistsAt(newTL))
-            {
-                Debug.Log($"[{name}] skip — already exists");
                 continue;
-            }
 
-            GameObject go = Instantiate(chunkPrefab, Vector3.zero, Quaternion.identity);
+            GameObject go = Instantiate(
+                chunkPrefab,
+                Vector3.zero,
+                Quaternion.identity
+            );
+
             Chunk chunk = go.GetComponent<Chunk>();
-            chunk.Setup(newTL);
+
+            if (chunk != null)
+            {
+                chunk.Setup(newTL);
+            }
         }
     }
 
-    private Vector2 ComputeTopLeft(int gx, int gy)
-    {
-        return new Vector2(gx * chunkSize, gy * chunkSize);
-    }
     private bool ChunkExistsAt(Vector2 topLeft)
     {
-        Vector2 center = new Vector2(topLeft.x + chunkSize / 2f, topLeft.y - chunkSize / 2f);
-        Collider2D hit = Physics2D.OverlapPoint(center);
-        return hit != null && hit.GetComponentInParent<Chunk>() != null;
-    }
+        Vector2 center = new Vector2(
+            topLeft.x + chunkSize / 2f,
+            topLeft.y - chunkSize / 2f
+        );
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireCube(transform.position, new Vector3(4f, 4f, 0f));
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(anchorPoint, 0.3f);
+        Collider2D[] hits = Physics2D.OverlapPointAll(center);
+
+        foreach (var hit in hits)
+        {
+            if (hit.GetComponentInParent<Chunk>() != null)
+                return true;
+        }
+
+        return false;
     }
 }
