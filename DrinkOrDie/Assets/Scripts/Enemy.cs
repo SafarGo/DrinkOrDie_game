@@ -5,10 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int ExpDrop;
+    public float MoveSpeed = 3f;
 
     [SerializeField] private string enemyName = "Enemy";
     [SerializeField] private float maxHealth = 10f;
-    [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float contactDamage = 5f;
     [SerializeField] private int resourceDrop = 1;
     [SerializeField] private GameObject damageNumberPrefab;
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         if (target == null) return;
         Vector2 dir = ((Vector2)target.position - rb.position).normalized;
-        rb.MovePosition(rb.position + dir * moveSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + dir * MoveSpeed * Time.deltaTime);
     }
 
     public virtual void TakeDamage(float amount)

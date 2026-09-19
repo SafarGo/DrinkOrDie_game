@@ -6,13 +6,17 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
     public int WaveCount = 1;
-    public int PlayerExpCount = 0;
+    public int PlayerExpCount;
     public int ExpToNewxWave;
+    public int PlayerLevel;
+
     public TMP_Text ExpText;
     public TMP_Text WaveText;
     public TMP_Text HPText;
     public GameObject UpgradePanel;
+    public GameObject BuildingPanel;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -39,9 +43,28 @@ public class GameManager : MonoBehaviour
         if (PlayerExpCount >= ExpToNewxWave)
         {
             WaveCount++;
-            PlayerExpCount = 0;
-            Time.timeScale = 0f;
-            UpgradePanel.GetComponent<UpgradePanel>().Show();
+            foreach (var spawner in FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None))
+            {
+                spawner.spawnInterval *= 0.9f;
+            }
+            ShowBuildingPanel();
         }
+        //if(PlayerExpCount%12 == 0)
+        //{
+         //   ShowUpgradePanel();
+        //}
+    }
+
+    void ShowUpgradePanel()
+    {
+        Time.timeScale = 0f;
+        UpgradePanel.GetComponent<UpgradePanel>().Show();
+    }
+
+    void ShowBuildingPanel()
+    {
+        GameObject.Find("ConstructionManager").GetComponent<ConstructionManager>().StartBuildPhase();
+        Time.timeScale = 0f;
+        BuildingPanel.SetActive(true);
     }
 }

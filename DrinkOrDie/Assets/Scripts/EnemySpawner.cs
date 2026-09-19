@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance { get; private set; }
+
     public float spawnInterval = 2f;
     public GameObject[] Enemies;
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
