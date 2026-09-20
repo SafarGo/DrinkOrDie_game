@@ -14,9 +14,8 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public virtual void Setup(Vector2 direction, float dmg, float spd, float life)
+    public virtual void Setup(Vector2 direction, float spd, float life)
     {
-        damage = dmg;
         speed = spd;
         lifetime = life;
 

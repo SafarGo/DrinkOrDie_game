@@ -27,7 +27,7 @@ public class TowerCOntroller : Building
                 yield return new WaitForSeconds(fireRate);
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
                 Vector2 direction = (enemyTransform.position - transform.position).normalized;
-                bullet.GetComponent<Projectile>().Setup(direction, damage, 10f, 3f);
+                bullet.GetComponent<Projectile>().Setup(direction, 10f, 3f);
             }
         }
     }

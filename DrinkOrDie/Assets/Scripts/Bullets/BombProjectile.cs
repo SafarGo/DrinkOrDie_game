@@ -10,14 +10,7 @@ public class BombProjectile : Projectile
     private bool hasStopped;
     private bool hasExploded;
 
-    public override void Setup(Vector2 direction, float dmg, float spd, float life)
-    {
-        base.Setup(direction, dmg, spd, life);
-        age = 0f;
-        hasStopped = false;
-        hasExploded = false;
-        rb.velocity = direction * speed;
-    }
+    
 
     private void Update()
     {

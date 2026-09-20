@@ -4,7 +4,7 @@ public class ExplosiveBullet : Projectile
 {
     [SerializeField] private float explosionRadius = 2f;
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Enemy")) return;
 

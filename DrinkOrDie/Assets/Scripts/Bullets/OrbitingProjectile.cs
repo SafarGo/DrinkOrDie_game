@@ -7,9 +7,8 @@ public class OrbitingProjectile : Projectile
     private float orbitSpeed;
     private float currentAngle;
 
-    public override void Setup(Vector2 direction, float dmg, float spd, float life)
+    public override void Setup(Vector2 direction, float spd, float life)
     {
-        damage = dmg;
         speed = spd;
         lifetime = life;
         currentAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

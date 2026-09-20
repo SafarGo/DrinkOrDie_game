@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int numberOftilesForShoot = 8;
-    [SerializeField] private float projectileDamage;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float projectileLifetime = 3f;
     [SerializeField] private float startAngle = 0f;
@@ -58,7 +57,7 @@ public class PlayerController : MonoBehaviour
         Projectile proj = go.GetComponent<Projectile>();
         if (proj != null)
         {
-            proj.Setup(dir, projectileDamage, projectileSpeed, projectileLifetime);
+            proj.Setup(dir, projectileSpeed, projectileLifetime);
         }
     }
 
