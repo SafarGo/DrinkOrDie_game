@@ -9,7 +9,7 @@ public class DamageZone : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            StartCoroutine(GetDamage());
+            StartCoroutine(GetDamage(other.gameObject));
         }
     }
 
@@ -17,17 +17,19 @@ public class DamageZone : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            StopCoroutine(GetDamage());
+            StopCoroutine(GetDamage(other.gameObject));
         }
     }
 
-    IEnumerator GetDamage()
+    IEnumerator GetDamage(GameObject _enemy)
     {
         float damage = GameObject.Find("Player").GetComponent<PlayerController>().Damage;
         float damageInterval = GameObject.Find("Player").GetComponent<PlayerController>().ShootSpeed;
         while (true)
         {
             yield return new WaitForSeconds(damageInterval);
+            if(_enemy == null) yield break;
+            _enemy.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 }

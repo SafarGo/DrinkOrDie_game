@@ -1578,7 +1578,7 @@ MonoBehaviour:
   FirePoint: {fileID: 775765927}
   Damage: 5
   speed: 7
-  projectilePrefab: {fileID: 9217956815024586437, guid: 33ce5c34bdcdb854e95700b300c9e954, type: 3}
+  projectilePrefab: {fileID: 8787859215911316373, guid: 94d6bfceb783b634b8ef3da557212826, type: 3}
   numberOftilesForShoot: 8
   projectileDamage: 5
   projectileSpeed: 10
@@ -4476,6 +4476,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93c58c33b09806a46a4796761ce09ddc, type: 2}
   - {fileID: 11400000, guid: 0054f881515e0a94dadb428378dfafb5, type: 2}
   - {fileID: 11400000, guid: b2ea3e063c2f8224aae74379606d0be0, type: 2}
+  isBuildingPhase: 0
 --- !u!4 &2126450124
 Transform:
   m_ObjectHideFlags: 0

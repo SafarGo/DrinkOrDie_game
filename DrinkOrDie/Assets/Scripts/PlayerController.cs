@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
         if(other.CompareTag("Enemy"))
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
+            Debug.Log("attack on nemy");
         }
     }
 

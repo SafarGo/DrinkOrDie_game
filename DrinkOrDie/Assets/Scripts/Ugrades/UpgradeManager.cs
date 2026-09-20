@@ -25,15 +25,15 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case UpgradeType.ProjectileType1:
-                player.SetProjectileType(1);
+                player.SetProjectileType(0);
                 break;
 
             case UpgradeType.ProjectileType2:
-                player.SetProjectileType(2);
+                player.SetProjectileType(1);
                 break;
 
             case UpgradeType.ProjectileType3:
-                player.SetProjectileType(3);
+                player.SetProjectileType(2);
                 break;
         }
     }
