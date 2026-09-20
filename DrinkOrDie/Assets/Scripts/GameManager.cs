@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         ExpText.text = "Exp: " + PlayerExpCount + "/" + ExpToNewxWave;
         WaveText.text = "Wave: " + WaveCount;
-        HPText.text = "HP: " + GameObject.Find("Player").GetComponent<PlayerController>().Hp;
+        HPText.text = "HP: " + Mathf.CeilToInt(GameObject.Find("Player").GetComponent<PlayerController>().Hp);
     }
 
     public void AddExp(int exp)
@@ -48,10 +49,14 @@ public class GameManager : MonoBehaviour
                 spawner.spawnInterval *= 0.9f;
             }
             ShowBuildingPanel();
-            ExpToNewxWave *= 5;
+            ExpToNewxWave *= 4;
+            if(WaveCount==6)
+            {
+                SceneManager.LoadScene("WinScene");
+            }
         }
         bool buildingFase = GameObject.Find("ConstructionManager").GetComponent<ConstructionManager>().isBuildingPhase;
-        if (PlayerExpCount%20 == 0 && !buildingFase)
+        if (PlayerExpCount%35 == 0 && !buildingFase)
         {
             ShowUpgradePanel();
         }

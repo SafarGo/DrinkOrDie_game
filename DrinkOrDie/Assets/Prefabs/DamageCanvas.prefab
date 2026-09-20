@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5060989635788353289}
   - component: {fileID: 2461680451042767785}
-  - component: {fileID: 5011528480824330310}
   - component: {fileID: 1055436611230949447}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -46,20 +45,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475897005954010873}
   m_CullTransparentMesh: 1
---- !u!114 &5011528480824330310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1475897005954010873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd0676f2b60c854887a1fe68cf0d8cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1.5
-  lifetime: 0.8
 --- !u!114 &1055436611230949447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9036672419930276769}
   - component: {fileID: 5654909217834272507}
+  - component: {fileID: -1200518595517126992}
   - component: {fileID: 5108746354027586635}
   - component: {fileID: 4840014842137593498}
   m_Layer: 5
@@ -211,6 +197,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &-1200518595517126992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616381715874326724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd0676f2b60c854887a1fe68cf0d8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1.5
+  lifetime: 0.8
 --- !u!114 &5108746354027586635
 MonoBehaviour:
   m_ObjectHideFlags: 0

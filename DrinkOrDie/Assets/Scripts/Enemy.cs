@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 
@@ -13,16 +14,36 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject damageNumberPrefab;
     [SerializeField] private float attackDelay;
     [SerializeField] private float attackDamage;
+    
 
     private float currentHealth;
     private Transform target;
+    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
+
+    private Coroutine attackCoroutine;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        SetTarget(GameObject.Find("Player").transform);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        GameObject player = GameObject.Find("Player");
+
+        if (player != null)
+            SetTarget(player.transform);
+    }
+
+    public void PrepareForSpawn()
+    {
+        currentHealth = maxHealth;
+        attackCoroutine = null;
+
+        GameObject player = GameObject.Find("Player");
+
+        if (player != null)
+            SetTarget(player.transform);
     }
 
     public virtual void SetTarget(Transform player)
@@ -33,35 +54,51 @@ public class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         if (target == null) return;
+
         Vector2 dir = ((Vector2)target.position - rb.position).normalized;
         rb.MovePosition(rb.position + dir * MoveSpeed * Time.deltaTime);
+        if (dir.x > 0)
+            spriteRenderer.flipX = false;
+        else if (dir.x < 0)
+            spriteRenderer.flipX = true;
     }
 
     public virtual void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        GameObject text = Instantiate(damageNumberPrefab, transform.position, transform.rotation);
-        text.GetComponentInChildren<DamageNumber>().SetDamage(amount);
-        if (currentHealth <= 0f) Die();
+
+        GameObject damageText = Instantiate(
+            damageNumberPrefab,
+            transform.position,
+            transform.rotation
+        );
+
+        damageText.GetComponentInChildren<DamageNumber>().SetDamage(amount);
+
+        if (currentHealth <= 0f)
+            Die();
     }
 
     protected virtual void Die()
     {
         GameManager.Instance.AddExp(ExpDrop);
-        Destroy(gameObject);
+        EnemyPool.Instance.ReturnEnemy(gameObject);
     }
-
 
     protected virtual void OnCollisionStay2D(Collision2D collision)
     {
-       
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(GetDamage(collision.gameObject));
+            if (attackCoroutine == null)
+            {
+                attackCoroutine = StartCoroutine(
+                    GetDamage(collision.gameObject)
+                );
+            }
         }
     }
 
@@ -69,16 +106,30 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StopCoroutine(GetDamage(collision.gameObject));
+            if (attackCoroutine != null)
+            {
+                StopCoroutine(attackCoroutine);
+                attackCoroutine = null;
+            }
         }
     }
 
     IEnumerator GetDamage(GameObject player)
     {
-        while (true)
+        while (player != null)
         {
             yield return new WaitForSeconds(attackDelay);
-            player.GetComponent<PlayerController>().Hp -= attackDamage;
+
+            if (player == null)
+                yield break;
+
+            PlayerController playerController =
+                player.GetComponent<PlayerController>();
+
+            if (playerController != null)
+                playerController.Hp -= attackDamage;
         }
+
+        attackCoroutine = null;
     }
 }

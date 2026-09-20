@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Building_Tower
   m_EditorClassIdentifier: 
   type: 0
-  icon: {fileID: -647740543, guid: f31390db9dd0c2549a3f317ba749ed1d, type: 3}
+  icon: {fileID: 1929762909, guid: 7c6d8f6961a880549b20e526ce1c3e36, type: 3}
   title: "\u0411\u0430\u0448\u043D\u044F"
   prefab: {fileID: 796489634732308137, guid: c8b851150418c5c4b87e79cf3442ad37, type: 3}
   cost: 15

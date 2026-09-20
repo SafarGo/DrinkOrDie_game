@@ -15,12 +15,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float startAngle = 0f;
     [SerializeField] private GameObject[] projectileTypes;
 
-    private Rigidbody2D rb; 
+    private Rigidbody2D rb;
+    private Animator anim;
     private Vector2 movement;
     
     private void Awake() 
     {
         rb = GetComponent<Rigidbody2D>(); 
+        anim = GetComponent<Animator>();
     } 
 
     void Start()
@@ -31,7 +33,27 @@ public class PlayerController : MonoBehaviour
     private void Update() {
         movement.x = Input.GetAxisRaw("Horizontal"); 
         movement.y = Input.GetAxisRaw("Vertical"); 
-        movement = movement.normalized; 
+        movement = movement.normalized;
+        if (movement.x < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (movement.x > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (movement.magnitude > 0)
+        {
+            anim.SetFloat("Speed", 1);
+        }
+        else
+        {
+            anim.SetFloat("Speed", 0);
+        }
+        if(Hp <=0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LoseScene");
+        }
     } 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime); 
@@ -39,13 +61,16 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot()
     {
-        float angleStep = 360f / numberOftilesForShoot;
-
-        for (int i = 0; i < numberOftilesForShoot; i++)
+        if (projectilePrefab != null)
         {
-            float angle = startAngle + angleStep * i;
-            Vector2 dir = AngleToDirection(angle);
-            SpawnProjectile(dir);
+            float angleStep = 360f / numberOftilesForShoot;
+
+            for (int i = 0; i < numberOftilesForShoot; i++)
+            {
+                float angle = startAngle + angleStep * i;
+                Vector2 dir = AngleToDirection(angle);
+                SpawnProjectile(dir);
+            }
         }
     }
 
@@ -75,12 +100,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Enemy"))
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
-            Debug.Log("attack on nemy");
+            anim.SetTrigger("Attack");
         }
     }
 

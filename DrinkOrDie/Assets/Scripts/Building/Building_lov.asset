@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Building_lov
   m_EditorClassIdentifier: 
   type: 2
-  icon: {fileID: -627023420, guid: f31390db9dd0c2549a3f317ba749ed1d, type: 3}
+  icon: {fileID: -1146566394, guid: 7c6d8f6961a880549b20e526ce1c3e36, type: 3}
   title: "\u041B\u043E\u0432\u0443\u0448\u043A\u0430"
   prefab: {fileID: 6510314424473246362, guid: 238a1d7456f228a4eac90b01d1c8a0c6, type: 3}
   cost: 20
