@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Upgrade_MeleeDamage
   m_EditorClassIdentifier: 
   type: 3
-  icon: {fileID: 0}
+  icon: {fileID: -88637575, guid: ed62a5ad7b0eede41a8279fd62e0ff04, type: 3}
   title: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u043A\u0443\u043B\u0430\u043A"
   description: "\u0423\u0440\u043E\u043D \u0431\u043B\u0438\u0436\u043D\u0435\u0433\u043E
     \u0431\u043E\u044F \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D \u043D\u0430

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Upgrade_ShootSpeed
   m_EditorClassIdentifier: 
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 1857796846, guid: 3fefe04a9871e114d9572ceca8639f10, type: 3}
   title: "\u0411\u044B\u0441\u0442\u0440\u0430\u044F \u0441\u0442\u0440\u0435\u043B\u044C\u0431\u0430"
   description: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0441\u0442\u0440\u0435\u043B\u044C\u0431\u044B
     \u0443\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0430 \u043D\u0430 15%"

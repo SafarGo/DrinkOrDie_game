@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Upgrade_Health
   m_EditorClassIdentifier: 
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: e173ea5f76570784daf1d08816fe1186, type: 3}
   title: "\u041A\u0440\u0435\u043F\u043A\u043E\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
   description: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0433\u043E
     \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F \u043D\u0430 20%"
