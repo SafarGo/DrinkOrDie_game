@@ -107,6 +107,11 @@ public class PlayerController : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(Damage);
             anim.SetTrigger("Attack");
         }
+
+        if (other.CompareTag("Bullet"))
+        {
+            Hp -= 1;
+        }
     }
 
     public void AddShootSpeed(float value)

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject BuildingPanel;
     public AudioSource WaveAudio;
     public GameObject PausePanel;
+    public GameObject BossPrefab;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
             ExpToNewxWave *= 4;
             if(WaveCount==6)
             {
-                SceneManager.LoadScene("WinScene");
+                //Spawn boss
             }
         }
         bool buildingFase = GameObject.Find("ConstructionManager").GetComponent<ConstructionManager>().isBuildingPhase;

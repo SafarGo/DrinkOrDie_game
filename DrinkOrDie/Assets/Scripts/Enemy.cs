@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -8,20 +7,19 @@ public class Enemy : MonoBehaviour
     public int ExpDrop;
     public float MoveSpeed = 3f;
 
-    [SerializeField] private string enemyName = "Enemy";
-    [SerializeField] private float maxHealth = 10f;
-    [SerializeField] private float contactDamage = 5f;
-    [SerializeField] private GameObject damageNumberPrefab;
-    [SerializeField] private float attackDelay;
-    [SerializeField] private float attackDamage;
-    
+    [SerializeField] protected string enemyName = "Enemy";
+    [SerializeField] protected float maxHealth = 10f;
+    [SerializeField] protected float contactDamage = 5f;
+    [SerializeField] protected GameObject damageNumberPrefab;
+    [SerializeField] protected float attackDelay;
+    [SerializeField] protected float attackDamage;
 
-    private float currentHealth;
-    private Transform target;
-    private SpriteRenderer spriteRenderer;
-    private Rigidbody2D rb;
+    protected float currentHealth;
+    protected Transform target;
+    protected SpriteRenderer spriteRenderer;
+    protected Rigidbody2D rb;
 
-    private Coroutine attackCoroutine;
+    protected Coroutine attackCoroutine;
 
     protected virtual void Awake()
     {
@@ -30,7 +28,6 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         GameObject player = GameObject.Find("Player");
-
         if (player != null)
             SetTarget(player.transform);
     }
@@ -41,7 +38,6 @@ public class Enemy : MonoBehaviour
         attackCoroutine = null;
 
         GameObject player = GameObject.Find("Player");
-
         if (player != null)
             SetTarget(player.transform);
     }
@@ -57,6 +53,7 @@ public class Enemy : MonoBehaviour
 
         Vector2 dir = ((Vector2)target.position - rb.position).normalized;
         rb.MovePosition(rb.position + dir * MoveSpeed * Time.deltaTime);
+
         if (dir.x > 0)
             spriteRenderer.flipX = false;
         else if (dir.x < 0)
