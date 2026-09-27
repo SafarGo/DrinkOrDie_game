@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text HPText;
     public GameObject UpgradePanel;
     public GameObject BuildingPanel;
+    public AudioSource WaveAudio;
+    public GameObject PausePanel;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,8 +29,9 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
         }
+
+        Time.timeScale = 1f;
     }
 
     void Update()
@@ -36,6 +39,18 @@ public class GameManager : MonoBehaviour
         ExpText.text = "Exp: " + PlayerExpCount + "/" + ExpToNewxWave;
         WaveText.text = "Wave: " + WaveCount;
         HPText.text = "HP: " + Mathf.CeilToInt(GameObject.Find("Player").GetComponent<PlayerController>().Hp);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PausePanel.activeSelf)
+            {
+                Continue();
+            }
+            else
+            {
+                Pause();
+            }
+        }
     }
 
     public void AddExp(int exp)
@@ -65,6 +80,7 @@ public class GameManager : MonoBehaviour
     void ShowUpgradePanel()
     {
         Time.timeScale = 0f;
+        WaveAudio.Play();
         UpgradePanel.GetComponent<UpgradePanel>().Show();
     }
 
@@ -72,6 +88,24 @@ public class GameManager : MonoBehaviour
     {
         GameObject.Find("ConstructionManager").GetComponent<ConstructionManager>().StartBuildPhase();
         Time.timeScale = 0f;
+        WaveAudio.Play();
         BuildingPanel.SetActive(true);
+    }
+
+    public void Home()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        PausePanel.SetActive(true);
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1f;
+        PausePanel.SetActive(false);
     }
 }
