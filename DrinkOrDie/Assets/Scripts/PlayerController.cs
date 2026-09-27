@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("Attack");
         }
 
-        if (other.CompareTag("Bullet"))
+        if (other.CompareTag("EnemyProjectile"))
         {
             Hp -= 1;
         }

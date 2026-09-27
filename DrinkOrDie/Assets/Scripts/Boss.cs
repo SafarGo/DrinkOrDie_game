@@ -112,7 +112,7 @@ public class Boss : Enemy
             Projectile p = proj.GetComponent<Projectile>();
             if (p != null) p.Setup(dir, projectileSpeed, projectileLifetime);
         }
-
+        Debug.Log("Шмаляю");
         yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
@@ -120,7 +120,7 @@ public class Boss : Enemy
     private IEnumerator DashAttack()
     {
         isAttacking = true;
-
+        animator.SetTrigger("Dash");
         yield return new WaitForSeconds(0.4f);
 
         if (target == null || isDead) { isAttacking = false; yield break; }

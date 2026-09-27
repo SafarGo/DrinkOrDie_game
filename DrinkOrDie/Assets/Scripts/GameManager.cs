@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public AudioSource WaveAudio;
     public GameObject PausePanel;
     public GameObject BossPrefab;
+    public GameObject[] EnemySpawners;
+    private bool isBossAdded = false;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -66,9 +68,14 @@ public class GameManager : MonoBehaviour
             }
             ShowBuildingPanel();
             ExpToNewxWave *= 4;
-            if(WaveCount==6)
+            if(WaveCount==6 && !isBossAdded)
             {
-                //Spawn boss
+                for(int i = 0; i<EnemySpawners.Length; i++)
+                {
+                    EnemySpawners[i].SetActive(false);
+                }
+                Instantiate(BossPrefab, GameObject.Find("Player").transform.position + new Vector3(3, 3, 0), BossPrefab.gameObject.transform.rotation);
+                isBossAdded = true;
             }
         }
         bool buildingFase = GameObject.Find("ConstructionManager").GetComponent<ConstructionManager>().isBuildingPhase;
